@@ -1,0 +1,5 @@
+com.prestamos.dao
+com.prestamos.dao.imp
+com.prestamos.dto
+com.prestamos.exception
+com.prestamos.services

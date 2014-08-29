@@ -1,0 +1,23 @@
+<div class="container">
+	<div ng-show="prestamos[0] == undefined" class="alert alert-success">Usted no posee Prestamos</div>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Codigo</th>
+				<th>Fecha Inicio</th>
+				<th>Fecha Fin</th>
+				<th>Dispositivo</th>
+				<th>Estado</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="prestamo in prestamos">
+				<td>{{prestamo.consecutivo}}</td>
+				<td>{{prestamo.fechaInicio | fecha}}</td>
+				<td>{{prestamo.fechaFin | fecha}}</td>
+				<td>{{prestamo.dispositivo.tipoDispositivo.tipo}} {{prestamo.dispositivo.descripcion}}</td>
+				<td>{{prestamo.estado}}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

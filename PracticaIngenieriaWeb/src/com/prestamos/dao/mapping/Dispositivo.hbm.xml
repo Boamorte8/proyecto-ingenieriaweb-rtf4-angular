@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 17/07/2014 03:01:07 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="com.prestamos.dto.Dispositivo" table="dispositivo" catalog="prestamos">
+        <id name="codigo" type="java.lang.Long">
+            <column name="codigo" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="tipoDispositivo" class="com.prestamos.dto.TipoDispositivo" lazy="false">
+            <column name="tipo" not-null="true" />
+        </many-to-one>
+        <property name="descripcion" type="string">
+            <column name="descripcion" length="250" not-null="true" />
+        </property>
+        <property name="estado" type="string">
+            <column name="estado" length="20" not-null="true" />
+        </property>
+        <set name="prestamos" table="prestamo" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="dispositivo" not-null="true" />
+            </key>
+            <one-to-many class="com.prestamos.dto.Prestamo" />
+        </set>
+    </class>
+</hibernate-mapping>

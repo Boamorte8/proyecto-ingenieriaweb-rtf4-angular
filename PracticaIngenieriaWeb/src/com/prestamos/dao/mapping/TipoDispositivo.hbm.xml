@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 17/07/2014 03:01:07 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="com.prestamos.dto.TipoDispositivo" table="tipo_dispositivo" catalog="prestamos">
+        <id name="codigo" type="java.lang.Integer">
+            <column name="codigo" />
+            <generator class="identity" />
+        </id>
+        <property name="tipo" type="string">
+            <column name="tipo" length="20" not-null="true" />
+        </property>
+        <set name="dispositivos" table="dispositivo" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="tipo" not-null="true" />
+            </key>
+            <one-to-many class="com.prestamos.dto.Dispositivo" />
+        </set>
+    </class>
+</hibernate-mapping>

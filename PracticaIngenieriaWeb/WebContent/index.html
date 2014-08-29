@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Prestamo de Dispositivos</title>
+		<script type="text/javascript" src="resources/js/angular.js"></script>
+		<script type="text/javascript" src="resources/js/angular-route.js"></script>
+		<script type="text/javascript" src="resources/js/angular-cookies.js"></script>
+		<script type="text/javascript" src="resources/js/appModules.js"></script>
+		<script type="text/javascript" src="resources/js/appControllers.js"></script>
+		<script type="text/javascript" src="resources/js/appServices.js"></script>
+		<script type="text/javascript" src="resources/js/sha256.js"></script>
+		<link rel="stylesheet" href="resources/css/bootstrap.css">
+	</head>
+	<body ng-app="Prestamos">
+		<div class="panel panel-default">
+			<div class="panel-heading" ng-controller="headerController">
+				<ul ng-show="tipoUsuario() == 'user'" class="nav nav-pills">
+					<li ng-class="getClass('/')"><a href="#/">Inicio</a></li>
+					<li ng-class="getClass('/solicitud')"><a href="#/solicitud">Solicitar Prestamo</a></li>
+					<li ng-class="getClass('/prestamos')"><a href="#/prestamos">Ver Historia de Prestamos</a></li>
+					<li ng-class="getClass('/disponibles')"><a href="#/disponibles">Consultar Dispositivos Disponibles</a></li>
+					<li class="navbar-right"><a ng-click="cerrarSesion()">Cerrar Sesion</a></li>
+				</ul>
+				<ul ng-show="tipoUsuario() == 'admin'" class="nav nav-pills">
+					<li ng-class="getClass('/')"><a href="#/">Inicio</a></li>
+					<li ng-class="getClass('/solicitudes')"><a href="#/solicitudes">Responder Solicitudes</a></li>
+					<li ng-class="getClass('/disponibles')"><a href="#/disponibles">Consultar Dispositivos Disponibles</a></li>
+					<li class="navbar-right"><a ng-click="cerrarSesion()">Cerrar Sesion</a></li>
+				</ul>
+			</div>
+			<div ng-view class="panel-body"></div>
+			<div class="panel-footer">Practica Ingenieria Web</div>
+		</div>
+	</body>
+</html>

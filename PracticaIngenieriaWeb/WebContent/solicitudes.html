@@ -1,0 +1,41 @@
+<div class="container">
+	<div ng-show="solicitudes[0] == undefined" class="alert alert-success">No hay solicitudes pendientes</div>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Codigo</th>
+				<th>Fecha Inicio</th>
+				<th>Fecha Fin</th>
+				<th>Dispositivo</th>
+				<th>Investigador</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="solicitud in solicitudes">
+				<td>{{solicitud.consecutivo}}</td>
+				<td>{{solicitud.fechaInicio | fecha}}</td>
+				<td>{{solicitud.fechaFin | fecha}}</td>
+				<td>{{solicitud.dispositivo.tipoDispositivo.tipo}}</td>
+				<td>{{solicitud.investigador.nombres}}
+					{{solicitud.investigador.apellidos}}</td>
+			</tr>
+		</tbody>
+	</table>
+	<div class="row">
+		<div class="col-lg-4"></div>
+			<div class="col-lg-4">
+				<form name="solicitudesForm">
+					<label>Solicitud</label>
+					<br>
+					<select class="form-control" ng-model="codigoPrestamo" required>
+						<option ng-repeat="solicitud in solicitudes" value="{{solicitud.consecutivo}}">Solicitud Numero: {{solicitud.consecutivo}}</option>
+					</select>
+					<br>
+					<input class="btn btn-default" type="submit" value="Aprobar" ng-disabled="solicitudesForm.$invalid" ng-click="aprobarPrestamo(solicitud)"/>
+					<input class="btn btn-default" type="submit" value="Rechazar" ng-disabled="solicitudesForm.$invalid" ng-click="rechazarPrestamo(solicitud)"/>
+				</form>
+			</div>
+		<div class="col-lg-4"></div>
+	</div>
+</div>
+
