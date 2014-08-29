@@ -1,0 +1,59 @@
+<div class="container">
+	<div class="row">
+	<div class="col-lg-4"></div>
+	<div class="col-lg-4">
+		<form ng-submit="listarDisponibles()" name="form">
+			<label>Ingrese la fecha:</label>
+			<br>
+			<input class="form-control" ng-model="fecha" type="date" required name="fecha"/>
+			<br>
+			<label>Hora Inicial:</label> 
+			<br>
+			<input class="form-control" ng-model="horaI" type="time" required name="horaI"/>
+			<br>
+			<label>Hora Final:</label>
+			<br> 
+			<input class="form-control" ng-model="horaF" type="time" required name="horaF"/>
+			<br>
+			<label>Tipo:</label>
+			<br> 
+			<select class="form-control" ng-model="tipo" required name="tipo">
+				<option ng-repeat="tipo in tipos" value="{{tipo}}">{{tipo}}</option>
+			</select>
+			<br>
+			<input class="btn btn-default" ng-disabled="form.$invalid" type="submit" value="Consultar"/>
+		</form>
+		<div ng-show="dispositivosDisponibles != undefined && dispositivosDisponibles[0] == undefined" class="alert alert-success">No hay dispositivos disponibles para su solicitud</div>
+		<table ng-show="dispositivosDisponibles[0] != undefined" class="table">
+			<thead>
+				<tr>
+					<th>Codigo</th>
+					<th>Tipo</th>
+					<th>Descripcion</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="dispositivo in dispositivosDisponibles">
+					<td>{{dispositivo.codigo}}</td>
+					<td>{{dispositivo.tipoDispositivo.tipo}}</td>
+					<td>{{dispositivo.descripcion}}</td>
+				</tr>
+			</tbody>
+		</table>
+		</div>
+		<div class="col-lg-4">
+			<br>
+			<span ng-show="form.fecha.$invalid && !form.fecha.$untouched" class="alert alert-danger">Por Favor Seleccione una fecha valida</span>
+			<span ng-show="form.fecha.$untouched" class="alert alert-warning">Por Favor Seleccione una fecha</span>
+			<hr>
+			<span ng-show="form.horaI.$invalid && !form.horaI.$untouched" class="alert alert-danger">Por Favor Seleccione una hora de inicio valida</span>
+			<span ng-show="form.horaI.$untouched" class="alert alert-warning">Por Favor Seleccione una hora de inicio</span>
+			<hr>
+			<span ng-show="form.horaF.$invalid && !form.horaF.$untouched" class="alert alert-danger">Por Favor Seleccione una hora de fin valida</span>
+			<span ng-show="form.horaF.$untouched" class="alert alert-warning">Por Favor Seleccione una hora de fin</span>
+			<hr>
+			<span ng-show="form.tipo.$invalid  && !form.tipo.$untouched" class="alert alert-danger">Por Favor Seleccione un tipo valido</span>
+			<span ng-show="form.tipo.$untouched" class="alert alert-warning">Por Favor Seleccione un tipo</span>
+		</div>
+		</div>
+</div>

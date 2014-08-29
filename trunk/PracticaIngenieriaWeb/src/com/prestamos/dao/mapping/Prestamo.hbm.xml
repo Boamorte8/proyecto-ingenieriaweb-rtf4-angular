@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 17/07/2014 03:01:07 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="com.prestamos.dto.Prestamo" table="prestamo" catalog="prestamos">
+        <id name="consecutivo" type="java.lang.Long">
+            <column name="consecutivo" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="dispositivo" class="com.prestamos.dto.Dispositivo" lazy="false">
+            <column name="dispositivo" not-null="true" />
+        </many-to-one>
+        <property name="fechaInicio" type="timestamp">
+            <column name="fecha_inicio" length="19" not-null="true" />
+        </property>
+        <property name="fechaFin" type="timestamp">
+            <column name="fecha_fin" length="19" not-null="true" />
+        </property>
+        <property name="estado" type="string">
+            <column name="estado" length="20" not-null="true" />
+        </property>
+        <property name="estadoInicialDispositivo" type="string">
+            <column name="estado_inicial_dispositivo" length="250" not-null="true" />
+        </property>
+        <property name="estadoFinalDispositivo" type="string">
+            <column name="estado_final_dispositivo" length="250" not-null="true" />
+        </property>
+        <many-to-one name="encargado" class="com.prestamos.dto.Usuario" lazy="false">
+            <column name="tipo_doc_encargado" not-null="true" />
+            <column name="num_doc_encargado" not-null="true" />
+        </many-to-one>
+        <many-to-one name="investigador" class="com.prestamos.dto.Usuario" lazy="false">
+            <column name="tipo_doc_investigador" not-null="true" />
+            <column name="num_doc_investigador" not-null="true" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

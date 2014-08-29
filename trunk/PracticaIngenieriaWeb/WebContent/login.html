@@ -1,0 +1,25 @@
+<div class="container">
+	<div class="row">
+		<div class="col-lg-4"></div>
+		<div class="col-lg-4" ng-controller="loginController">
+			<form name="loginForm">
+				<label>Tipo de Documento</label>
+				<select class="form-control" ng-model="tipoDoc" required>
+					<option value="cedula">Cedula de Ciudadania</option>
+					<option value="cedulaE">Cedula de Extranjeria</option>
+					<option value="tarjeta">Tarjeta de Identidad</option>
+					<option value="pasaporte">Pasaporte</option>
+				</select>
+				<br>
+				<label>Numero de Documento</label>
+				<input class="form-control" type="number" required min="0" placeholder="Digite su Numero de Documento" ng-model="numDoc">
+				<br>
+				<label>Contraseña</label>
+				<input class="form-control" type="password" required placeholder="Digite su Contraseña" ng-model="password">
+				<br>
+				<input class="btn btn-default" type="submit" ng-disabled="loginForm.$invalid" ng-click="login(username)" value="Acceder" />
+			</form>
+		</div>
+		<div class="col-lg-4"></div>
+	</div>
+</div>

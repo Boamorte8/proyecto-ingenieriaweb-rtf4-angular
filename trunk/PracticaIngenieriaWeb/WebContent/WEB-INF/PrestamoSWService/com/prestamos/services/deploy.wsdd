@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from PrestamoSWService WSDL service -->
+
+  <service name="PrestamoSW" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://services.prestamos.com"/>
+      <parameter name="wsdlServiceElement" value="PrestamoSWService"/>
+      <parameter name="schemaQualified" value="http://exception.prestamos.com,http://services.prestamos.com,http://dto.prestamos.com"/>
+      <parameter name="wsdlServicePort" value="PrestamoSW"/>
+      <parameter name="className" value="com.prestamos.services.PrestamoSW"/>
+      <parameter name="wsdlPortType" value="PrestamoSW"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://services.prestamos.com" xmlns:retNS="http://services.prestamos.com" xmlns:rtns="http://services.prestamos.com" xmlns:tns="http://services.prestamos.com" name="listarDispositivosDisponibles" qname="operNS:listarDispositivosDisponibles" returnQName="retNS:listarDispositivosDisponiblesReturn" returnType="rtns:ArrayOf_xsd_anyType" returnItemQName="tns:item" soapAction="">
+        <parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" xmlns:pns="http://services.prestamos.com" qname="pns:fecha" type="tns:string"/>
+        <fault xmlns:tns="http://exception.prestamos.com" xmlns:fns="http://services.prestamos.com" name="SWException" qname="fns:fault" class="com.prestamos.exception.SWException" type="tns:SWException"/>
+      </operation>
+      <operation xmlns:operNS="http://services.prestamos.com" name="actualizarPrestamo" qname="operNS:actualizarPrestamo" soapAction="">
+        <parameter xmlns:pns="http://services.prestamos.com" xmlns:tns="http://dto.prestamos.com" qname="pns:prestamo" type="tns:Prestamo"/>
+        <fault xmlns:fns="http://services.prestamos.com" xmlns:tns="http://exception.prestamos.com" name="SWException" qname="fns:fault" class="com.prestamos.exception.SWException" type="tns:SWException"/>
+      </operation>
+      <operation xmlns:operNS="http://services.prestamos.com" name="solicitarPrestamo" qname="operNS:solicitarPrestamo" soapAction="">
+        <parameter xmlns:pns="http://services.prestamos.com" xmlns:tns="http://dto.prestamos.com" qname="pns:prestamo" type="tns:Prestamo"/>
+        <fault xmlns:fns="http://services.prestamos.com" xmlns:tns="http://exception.prestamos.com" name="SWException" qname="fns:fault" class="com.prestamos.exception.SWException" type="tns:SWException"/>
+      </operation>
+      <parameter name="allowedMethods" value="solicitarPrestamo actualizarPrestamo listarDispositivosDisponibles"/>
+
+      <typeMapping xmlns:ns="http://services.prestamos.com" qname="ns:&gt;actualizarPrestamoResponse" type="java:com.prestamos.services.ActualizarPrestamoResponse" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://services.prestamos.com" qname="ns:&gt;listarDispositivosDisponiblesResponse" type="java:com.prestamos.services.ListarDispositivosDisponiblesResponse" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://dto.prestamos.com" qname="ns:TipoDispositivo" type="java:com.prestamos.dto.TipoDispositivo" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://services.prestamos.com" qname="ns:&gt;listarDispositivosDisponibles" type="java:com.prestamos.services.ListarDispositivosDisponibles" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://dto.prestamos.com" qname="ns:Usuario" type="java:com.prestamos.dto.Usuario" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://services.prestamos.com" qname="ns:&gt;solicitarPrestamo" type="java:com.prestamos.services.SolicitarPrestamo" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://services.prestamos.com" qname="ns:&gt;solicitarPrestamoResponse" type="java:com.prestamos.services.SolicitarPrestamoResponse" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <arrayMapping xmlns:ns="http://services.prestamos.com" xmlns:cmp-ns="http://www.w3.org/2001/XMLSchema" qname="ns:ArrayOf_xsd_anyType" type="java:java.lang.Object[]" innerType="cmp-ns:anyType" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://services.prestamos.com" qname="ns:&gt;actualizarPrestamo" type="java:com.prestamos.services.ActualizarPrestamo" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://dto.prestamos.com" qname="ns:Prestamo" type="java:com.prestamos.dto.Prestamo" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://dto.prestamos.com" qname="ns:TipoUsuario" type="java:com.prestamos.dto.TipoUsuario" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://exception.prestamos.com" qname="ns:SWException" type="java:com.prestamos.exception.SWException" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://dto.prestamos.com" qname="ns:Dispositivo" type="java:com.prestamos.dto.Dispositivo" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://dto.prestamos.com" qname="ns:UsuarioId" type="java:com.prestamos.dto.UsuarioId" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+  </service>
+</deployment>
